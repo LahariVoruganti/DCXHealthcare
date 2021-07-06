@@ -1,5 +1,7 @@
 package com.abc.healthcare.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -199,12 +201,70 @@ public class AppointmentServiceImp implements AppointmentService {
 		
 	}
 
+
 	@Override
-	public List<Appointment> findByDoctorName(String name) throws ResourceNotFoundException {
+	public List<Appointment> findAppointmentsByDoctorId(int doctorId) throws ResourceNotFoundException {
+		List<AppointmentEntity> appointmentsList = appointmentRepository.findAllByDoctorId(doctorId);
+		if(appointmentsList.isEmpty()) {
+			throw new ResourceNotFoundException("Cannot find appointments with this ID "+doctorId);
+			
+		}
+		else {
+			List<Appointment> appointments = new ArrayList<>();
+			
+			Appointment appointmentModel = new Appointment();
+			
+			Iterator<AppointmentEntity> i =  appointmentsList.iterator();
+			
+			while(i.hasNext()) {
+				AppointmentEntity appointment = i.next();
+				appointmentModel.setAppointmentId(appointment.getAppointmentId());
+				appointmentModel.setAppointmentDate(appointment.getAppointmentDate());
+				appointmentModel.setAppointmentSlot(appointment.getAppointmentSlot());
+				appointmentModel.getBillId();
+				appointmentModel.getPatientId();
+				
+				appointments.add(appointmentModel);
+				
+				
+				
+			}
+			return  appointments;
+		}
 		
+	}
+
+
+	@Override
+	public List<Appointment> findAppointmentsByPatientId(int patientId) throws ResourceNotFoundException {
 		
-		
-		return null;
+		List<AppointmentEntity> appointmentsList = appointmentRepository.findAllByPatientId(patientId);
+		if(appointmentsList.isEmpty()) {
+			throw new ResourceNotFoundException("Cannot find appointments with this ID "+patientId);
+			
+		}
+		else {
+			List<Appointment> appointments = new ArrayList<>();
+			
+			Appointment appointmentModel = new Appointment();
+			
+			Iterator<AppointmentEntity> i =  appointmentsList.iterator();
+			
+			while(i.hasNext()) {
+				AppointmentEntity appointment = i.next();
+				appointmentModel.setAppointmentId(appointment.getAppointmentId());
+				appointmentModel.setAppointmentDate(appointment.getAppointmentDate());
+				appointmentModel.setAppointmentSlot(appointment.getAppointmentSlot());
+				appointmentModel.getBillId();
+				appointmentModel.getDoctorId();
+				
+				appointments.add(appointmentModel);
+				
+				
+				
+			}
+			return  appointments;
+		}
 	}
 
 }

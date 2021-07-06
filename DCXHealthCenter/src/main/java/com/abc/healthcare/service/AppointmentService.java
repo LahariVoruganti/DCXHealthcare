@@ -43,7 +43,7 @@ public interface AppointmentService {
 	  * @return
 	  * @throws ResourceNotFoundException
 	  */
-	 public List<Appointment> findByDoctorName(String name) throws ResourceNotFoundException;
+	 public List<Appointment> findAppointmentsByDoctorId(int doctorId) throws ResourceNotFoundException;
 	 
 	 /**
 	  * 
@@ -51,4 +51,12 @@ public interface AppointmentService {
 	  * @throws ResourceNotFoundException
 	  */
 	 public void updateAppointmentById(Appointment appointment) throws ResourceNotFoundException;
+	 
+	 /**
+	  * 
+	  * @param doctorId
+	  * @return
+	  * @throws ResourceNotFoundException
+	  */
+	 public List<Appointment> findAppointmentsByPatientId(int patientId) throws ResourceNotFoundException;
 }

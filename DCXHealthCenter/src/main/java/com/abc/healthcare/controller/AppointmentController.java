@@ -1,5 +1,7 @@
 package com.abc.healthcare.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import javax.validation.constraints.Min;
@@ -52,7 +54,7 @@ public class AppointmentController {
 	}
 	
 	@PostMapping("/findAppointment/{id}")
-	public ResponseEntity<?> findAppointmentbyId(@Valid @Min(1) @PathVariable int id){
+	public ResponseEntity<?> findAppointment(@Valid @Min(1) @PathVariable int id){
 		LOGGER.info("AppointmentServiceImp::findAppointmentbyId(Appointment appointment) method called");
 		Appointment appointment = appointmentService.findAppointmentbyId(id);
 		return new ResponseEntity<>(appointment,HttpStatus.FOUND);
@@ -74,5 +76,18 @@ public class AppointmentController {
 		return new ResponseEntity<>(response,HttpStatus.FOUND);
 	}
 	
+	@PostMapping("/findAppointmentsByDoctor/{id}")
+	public ResponseEntity<?> findAppointmentsByDoctor(@Valid @Min(1) @PathVariable int id){
+		List<Appointment> appointment = appointmentService.findAppointmentsByDoctorId(id);
+		return new ResponseEntity<>(appointment,HttpStatus.FOUND);
+		
+	}
+	
+	@PostMapping("/findAppointmentsByPatient/{id}")
+	public ResponseEntity<?> findAppointmentsByPatient(@Valid @Min(1) @PathVariable int id){
+		List<Appointment> appointment = appointmentService.findAppointmentsByPatientId(id);
+		return new ResponseEntity<>(appointment,HttpStatus.FOUND);
+		
+	}
 
 }

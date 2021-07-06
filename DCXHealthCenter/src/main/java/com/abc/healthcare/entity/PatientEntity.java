@@ -1,6 +1,7 @@
 package com.abc.healthcare.entity;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,7 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+/**
+ * 
+ * @author likhith  A S
+ *
+ * date: July 5, 2021
+ */
 
 @Entity
 @Table (name = "patient_table")

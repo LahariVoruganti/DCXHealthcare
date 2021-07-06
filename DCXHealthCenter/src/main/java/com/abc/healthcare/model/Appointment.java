@@ -2,20 +2,34 @@ package com.abc.healthcare.model;
 
 import java.time.LocalDate;
 
+
+import javax.validation.constraints.NotNull;
+
 import com.abc.healthcare.entity.PatientEntity;
 
+/**
+ * 
+ * @author LAHARI
+ *Date : 06-Jul-2021
+ */
 public class Appointment {
 	
+	@NotNull(message = "please provide id")
 	private int AppointmentId;
 	
+	@NotNull(message = "please provide date")
 	private LocalDate AppointmentDate;
 	
+	@NotNull(message = "please provide slot")
 	private int AppointmentSlot;
 	
+	@NotNull(message = "please provide Patient id")
 	private int patientId;
-
+	
+	@NotNull(message = "please provide Doctor id")
 	private int doctorId;
 	
+	@NotNull(message = "please provide Bill id")
 	private int billId;
 
 	public int getBillId() {
